@@ -4,10 +4,10 @@ An unofficial, free English fan translation of **Super Robot Wars K** for the Ni
 
 The translation is distributed through an **offline HTML patcher**. No game ROM is included: you must supply your own clean Japanese game dump.
 
-**Patch version:** 0.9.1 (ASCII V40 — full battle-text test build)  
-**Last updated:** November 18, 2026  
+**Patch version:** 0.9.2 (ASCII V95)  
+**Last updated:** November 27, 2026  
 **Language:** English  
-**Status:** Test release — the latest battle-text changes still need in-game validation.
+**Status:** Test release — targeted gameplay checks passed; full regression testing remains ongoing.
 
 ## What's included
 
@@ -18,43 +18,42 @@ The translation is distributed through an **offline HTML patcher**. No game ROM 
 - Expanded English names and descriptions for **35 pilot skills** and **80 special mecha systems/abilities**.
 - Expanded descriptions for **all 35 Spirit Commands**, while retaining their existing names, costs, icons and order.
 - One-byte storage for compatible characters in all **210 battle-text banks**, reducing the space required by the battle-text data.
-- A full review of **20,994 battle-text entries**, with **4,499 entries restored, expanded or reflowed** across 191 banks in the latest test build. The build contains **559 three-line battle entries** in total.
-- Preserved dynamic commands, speaker order and battle controls. **49 entries with incompatible dynamic-command sequences were deliberately left unchanged** rather than risking broken in-game variables or scripts.
+- A sequential editorial pass through all **210 battle-text banks / 20,994 entries**, with contextual revisions, punctuation and reflow based on the Japanese dialogue. The latest editorial pass preserves the original line structure rather than targeting three-line expansions.
+- Preserved battle controls and speaker assignments, repaired auxiliary speaker pointers, and restored **49 missing dynamic-name commands** during the V78 editorial pass. V95 additionally restores a missing dynamic-name call in Chaser Combo.
 - Earlier dialogue, character-name, shop, Pair Up, save-screen and chapter-title punctuation corrections.
 - Earlier P19 safety adjustments for dynamic markers across **495 story dialogue boxes in 48 banks**.
 - English labels for **87 terrain and location types across 227 records**, with compact forms where space remains limited.
 - Earlier repairs to **18 battle-effect labels**, plus an adjusted Sortie Will heading.
 - An ending graphic reading **“Thanks for playing”** on its first line.
-- Stargazer's six support quotes arranged on one line, including quotes addressed to Sven/Noir.
+- Corrected support-attack speaker selection, including the reported King Gainer and Stargazer cases.
 - A corrected workshop logo and an offline English patcher interface. Your ROM is processed locally; it does not need to be uploaded to a server.
 
 **Note:** More compact names and some short interface labels remain where a full spelling would overflow the actual on-screen field. The one-byte encoding does not remove screen-width limits.
 
-## What's new in 0.9.1
+## What's new in 0.9.2
 
-This version incorporates the ASCII improvements developed through V37–V40:
+This cumulative update incorporates the work through ASCII V95:
 
-- **ASCII V35:** expanded numerous weapon, unit and pilot names.
-- **ASCII V36:** expanded pilot-skill and special-mecha-ability text.
-- **ASCII V37:** expanded the 35 Spirit Command descriptions.
-- **ASCII V38:** converted compatible battle text to one-byte storage, without changing the meaning of the decoded dialogue. The new storage format was successfully tested by the project owner with attacks involving **King Gainer** and **Murasame Liger**.
-- **ASCII V39–V40:** began restoring combat dialogue that had previously been shortened because of text-space restrictions. V40 extends the revision across the complete battle archive rather than a small set of isolated examples.
-
-The V40 battle archive is **1,087,643 bytes**, compared with **1,436,577 bytes** in V37. This is a **348,934-byte reduction**, even after the dialogue expansions.
-
-The battle-text changes in this build have passed structural checks, including pointer ranges, preserved control sequences and exact patch-output reconstruction. **They have not yet passed full emulator, visual or hardware testing.** Restored lines from an earlier English master also need additional contextual editorial review.
+- **Combat engine (V41–V54):** moved away from experimental three-line expansions and repaired auxiliary battle-bank pointers responsible for incorrect support speakers, including the unexpected Kira portrait and empty dialogue box. Confirmed repeated successful support attacks with King Gainer and Stargazer on V54.
+- **Battle dialogue (V55–V78):** completed the sequential editorial pass through the battle archive, restoring context, improving wording and punctuation, and preserving Japanese line counts and dynamic controls in the revised entries. V78 restored 49 previously missing dynamic-name commands.
+- **Names and interface (V79–V86):** reviewed pilot, unit and weapon labels; corrected Favorite Series titles, keyboard buttons, Spirit menu labels, Groovine Buster, Suspage, and selected story dialogue. Shortened Daiya's Mother to Daiya's Mom and the affected Demon Beast battle-preview label to D. Beast. Corrected the Critical! graphic's map data.
+- **List alignment and terrain (V87–V90):** adjusted the left margin of unit, pilot and weapon names; restored Unit Status and Pilot Status; standardized terrain abbreviations to A/L/W/S and terminology to Land and Water. Expanded selected Missile labels and corrected Athrun and Diana A dialogue references.
+- **Deployment and system menus (V91–V92):** removed overlapping fragments beneath deployment labels; aligned Change BGM; corrected Shop headings, including Sell Parts; separated Stats and Now in Skill Parts.
+- **Name entry (V93):** restored the original spacing of selectable characters in the rename keyboard without changing the side buttons or other interface text.
+- **Chapter 5–6 feedback (V94):** corrected Gadved and Bachclone in story dialogue; adjusted Type and Terr field widths and the Hero Unit heading in Save Data.
+- **Chaser Combo (V95):** restored Mist's missing response using Angelica's saved name ("Angelica!" with the default name). Verified the affected attack sequence in melonDS 1.1.
 
 ## Installation
 
 1. **Back up** your original Japanese `.nds` file and any existing `.sav` file.
-2. Download the **0.9.1 / ASCII V40** offline HTML patcher.
+2. Download the **0.9.2 / ASCII V95** offline HTML patcher.
 3. Open the `.html` file in a compatible browser on your computer or Android device.
 4. Select your **clean, unmodified Japanese Super Robot Wars K ROM** (`.nds`).
 5. Use the patcher's **Verify ROM and apply patch** option.
 6. Save the generated English-patched `.nds` file and open it in your compatible emulator or on your own hardware.
 7. To continue an existing save, keep a backup. Where required by your emulator or flashcart, make sure the `.nds` and `.sav` files share the same base filename.
 
-**Important:** The patcher is cumulative. Always start from the original Japanese ROM; **do not apply it over a previously patched V37, V38, V39 or older ROM**. Do not combine different patch versions.
+**Important:** The patcher is cumulative. Always start from the original Japanese ROM; **do not apply it over a previously patched ROM from any earlier release**. Do not combine different patch versions.
 
 ### Required ROM
 
@@ -78,12 +77,14 @@ A second clean Japanese dump from an original cartridge has also been verified a
 
 These two verified Japanese dumps differ only in reserved header areas (`0x378–0x39F` and `0xF80–0xFFF`). After normalizing those areas, their game data match exactly. The patcher recognizes both verified sources. The filename itself may vary; use the patcher's verification function to confirm that your clean Japanese dump is compatible.
 
-### Expected 0.9.1 / V40 result
+### Expected 0.9.2 / V95 result
 
 | Property | Value |
 | --- | --- |
-| Suggested filename | `Super_Robot_Wars_K_EN_0.9.1.nds` |
-| SHA-256 | `8eb7843b72449cb96d669573011b3123b1b3adc3c6d80bb8767ae98c4a7b6d1a` |
+| Suggested filename | `Super_Robot_Wars_K_EN_0.9.2.nds` |
+| Size | `64,871,337` bytes |
+| CRC32 | `8193D6FC` |
+| SHA-256 | `76caa60f11ab55bf6d438a4bf8e56a565e3888807cabb93db44e806f57ec8e8f` |
 
 The suggested filename is only a label; the SHA-256 identifies the expected patched ROM. The patcher was independently checked to reproduce this output byte for byte from the verified Japanese source.
 
@@ -98,30 +99,30 @@ Ziegfried completed an earlier build of the translation, taking these routes:
 - Archangel
 - Tatsumiya Island
 
-Many thanks to Ziegfried for completing a playthrough and helping test the translation. Other testers have worked on other routes. A full playthrough of an **earlier build** does **not** establish that the latest 0.9.1 changes, all route combinations or optional events are free of issues.
+Many thanks to Ziegfried for completing a playthrough and helping test the translation. Other testers have worked on other routes. A full playthrough of an **earlier build** does **not** establish that the latest 0.9.2 changes, all route combinations or optional events are free of issues.
 
 ### Validation of the latest changes
 
-- **V38:** the project owner confirmed successful attacks with **King Gainer** and **Murasame Liger**, providing a limited gameplay check for the new battle-text storage.
-- **V39:** 110 three-line dialogue restorations passed structural checks; gameplay testing was not confirmed.
-- **V40 / 0.9.1:** all 210 combat banks and 20,994 entries were audited, 4,499 entries were expanded or repaired, and the resulting patch was reconstructed and verified exactly. **In-game testing of this specific build is still pending.**
+- **V38:** the project owner confirmed successful attacks with King Gainer and Murasame Liger.
+- **V54:** repeated King Gainer and Stargazer support tests were reported successful after the auxiliary-pointer repair.
+- **V78:** all 210 banks and 20,994 battle entries were structurally audited; auxiliary speaker references and restored dynamic-name commands were checked.
+- **V80–V93:** targeted melonDS 1.1 checks covered Spirit menu labels, unit/pilot/weapon lists, terrain indicators, deployment commands, System, Shop, Skill Parts and name entry. The keyboard spacing was checked against the Japanese game, including ABC/Sym, Hiragana and Kanji pages.
+- **V94:** the story corrections passed decoding checks; visual confirmation of Type, Terr and Hero Unit adjustments is still pending.
+- **V95:** melonDS 1.1 reproduced the Chaser Combo sequence from the tester's battery save. Mist's restored response displayed with the correct portrait, and the attack animation continued. The V95 patch was independently reconstructed using Python and JavaScript.
 
-For testing 0.9.1, please try attacks, counterattacks, defenses, support actions and battles involving different series. Pay particular attention to long two- and three-line messages, speaker or portrait changes, voice-related effects, transitions to shorter messages, and the return to the map. Repeating the King Gainer and Murasame Liger tests is especially helpful for checking regressions.
+These are targeted checks, not a complete playthrough of 0.9.2. Please continue to test different routes, support combinations, dynamic names, battle transitions and menu screens.
 
 ## Known limitations and bug reports
 
-- Some expanded battle dialogue may overflow or display incorrectly until visually verified in-game. **The maximum tested reconstruction format is three lines, not a guarantee of correct display in every battle.**
-- The **49 dynamic-command entries** mentioned above remain unchanged pending investigation of their functions.
-- The restored combat text comes partly from an earlier English translation master and still needs further contextual and terminology auditing.
-- Some pilot-skill labels, weapons, units and other interface fields must remain abbreviated because of their available pixel width.
-- Previously reported Sortie-alignment, punctuation and portrait/speaker issues should still be checked for regressions; do not assume that the new ASCII work fixes all of them.
-- Three proper terrain/location labels were previously reported as untranslated; these have not been confirmed resolved in this build.
-- The earlier Stargazer support-portrait issue, as well as terrain, battle-effect and ending-graphic fixes, still benefit from targeted visual checks.
-- Untested routes, optional scenes, save states and different emulators or hardware configurations can reveal additional problems.
+- Some interface labels and names remain abbreviated because of their available pixel width.
+- The small Spirit indicators below Sup retain single-letter labels; the proposed two-letter layout is not yet validated.
+- Some earlier graphical fixes, including Critical! during live combat and specific nameplates, still require targeted regression checks. The earlier wedding-title layout report also remains open for verification.
+- The full editorial and visual review of every battle and route is not yet certified.
+- Untested routes, optional scenes, save states and different emulators or hardware configurations can reveal additional problems. Back up battery saves before upgrading; emulator save states may not be compatible across builds or emulator versions.
 
 If you encounter a crash, clipped text, a broken portrait, missing dialogue or an interface issue, please open an issue in the GitLab project and include, if possible:
 
-- The **patch version (0.9.1)** and your emulator or hardware.
+- The **patch version (0.9.2 / V95)** and your emulator or hardware.
 - The **chapter, route, unit and action** involved (attack, counterattack, support, defense, etc.).
 - The **last visible dialogue line** or a description of the affected screen.
 - A screenshot or short video; for a crash, a diagnostic dump may also help.
@@ -139,6 +140,7 @@ Please back up your save before investigating an issue. **Do not upload copyrigh
 - **Rowlet3196**
 - **FeatheredFaye**
 - **Ziegfried** — Completed a full playthrough covering the Berlin, Build Base, Archangel and Tatsumiya Island routes.
+- **FieryBlitz** — Detailed interface feedback, consistency checks and bug reports.
 
 A huge thank you to all testers for their time, dedication, feedback and bug reports. Your help locating graphical issues, dialogue problems, crashes and hardware-specific behavior has been essential to improving this translation.
 
