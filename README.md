@@ -56,7 +56,7 @@ This cumulative update incorporates the work through ASCII V95:
 ## Installation
 
 1. **Back up** your original Japanese `.nds` file and any existing `.sav` file.
-2. Download the [cumulative 0.9.2F (V99) offline HTML patcher](https://chatgpt.com/library?file_id=libfile_d1446e2866b481918a60bf4b97a3d343&account_id=personal).
+2. Download the offline HTML patcher
 3. Open the `.html` file in a compatible browser on your computer or Android device.
 4. Select your **clean, unmodified Japanese Super Robot Wars K ROM** (`.nds`).
 5. Use the patcher's **Verify ROM and apply patch** option.
