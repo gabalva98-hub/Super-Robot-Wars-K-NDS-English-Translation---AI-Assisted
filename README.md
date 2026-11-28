@@ -4,10 +4,14 @@ An unofficial, free English fan translation of **Super Robot Wars K** for the Ni
 
 The translation is distributed through an **offline HTML patcher**. No game ROM is included: you must supply your own clean Japanese game dump.
 
-**Patch version:** 0.9.2 (ASCII V95)  
+**Patch version:** 0.9.2F (V99)  
 **Last updated:** November 27, 2026  
 **Language:** English  
-**Status:** Test release — targeted gameplay checks passed; full regression testing remains ongoing.
+**Status:** V99 passed static verification. The affected animation still needs an in-game check.
+
+## Original game bug fixed in 0.9.2F
+
+In one battle pose, an arm segment was drawn over the mecha's chest, making it look as though an extra arm was coming out of the torso. We reproduced the pose from the clean Japanese ROM and confirmed that it used the same sprite order as V97. V98 moved the main arm segment behind the torso. V99 corrected the draw order of the three remaining pieces that still overlapped the chest. The reconstructed pose preserves the original silhouette.
 
 ## What's included
 
@@ -30,7 +34,7 @@ The translation is distributed through an **offline HTML patcher**. No game ROM 
 
 **Note:** More compact names and some short interface labels remain where a full spelling would overflow the actual on-screen field. The one-byte encoding does not remove screen-width limits.
 
-## What's new in 0.9.2
+## Changes through 0.9.2 (V95)
 
 This cumulative update incorporates the work through ASCII V95:
 
@@ -43,10 +47,16 @@ This cumulative update incorporates the work through ASCII V95:
 - **Chapter 5–6 feedback (V94):** corrected Gadved and Bachclone in story dialogue; adjusted Type and Terr field widths and the Hero Unit heading in Save Data.
 - **Chaser Combo (V95):** restored Mist's missing response using Angelica's saved name ("Angelica!" with the default name). Verified the affected attack sequence in melonDS 1.1.
 
+## What’s new in 0.9.2F (V96–V99)
+
+- **V96:** corrected the Gadved nameplate, standardized Kizz Munt and Zonnet, and updated the Bachclone and Zonnet location labels. Fixed the hyphen in “top-class” during Chaser Combo. Translated the remaining Unit Bonus and Weapon Bonus options, updated the Range heading to Rng, and adjusted the EN label in Unit Upgrades.
+- **V97:** updated Steel Jeeg's activation label to “Bronze Bell Power” and redrew it to fit the available width. Corrected the central reticle label in Angelica's attack from “SCHEISSE” to “SCHIEẞ”.
+- **V98–V99:** corrected the sprite order in the affected battle pose from the original game.
+
 ## Installation
 
 1. **Back up** your original Japanese `.nds` file and any existing `.sav` file.
-2. Download the **0.9.2 / ASCII V95** offline HTML patcher.
+2. Download the [cumulative 0.9.2F (V99) offline HTML patcher](https://chatgpt.com/library?file_id=libfile_d1446e2866b481918a60bf4b97a3d343&account_id=personal).
 3. Open the `.html` file in a compatible browser on your computer or Android device.
 4. Select your **clean, unmodified Japanese Super Robot Wars K ROM** (`.nds`).
 5. Use the patcher's **Verify ROM and apply patch** option.
@@ -77,16 +87,14 @@ A second clean Japanese dump from an original cartridge has also been verified a
 
 These two verified Japanese dumps differ only in reserved header areas (`0x378–0x39F` and `0xF80–0xFFF`). After normalizing those areas, their game data match exactly. The patcher recognizes both verified sources. The filename itself may vary; use the patcher's verification function to confirm that your clean Japanese dump is compatible.
 
-### Expected 0.9.2 / V95 result
+### Expected 0.9.2F (V99) result
 
 | Property | Value |
 | --- | --- |
-| Suggested filename | `Super_Robot_Wars_K_EN_0.9.2.nds` |
-| Size | `64,871,337` bytes |
-| CRC32 | `8193D6FC` |
-| SHA-256 | `76caa60f11ab55bf6d438a4bf8e56a565e3888807cabb93db44e806f57ec8e8f` |
-
-The suggested filename is only a label; the SHA-256 identifies the expected patched ROM. The patcher was independently checked to reproduce this output byte for byte from the verified Japanese source.
+| Output filename | `Super_Robot_Wars_K_EN_V99_TEST.nds` |
+| Size | `64,871,340` bytes |
+| CRC32 | `7A9C3F5C` |
+| SHA-256 | `5dcd72c1a59e10f608d1e15c99a1af5575331707b1fb896ee967eba8955cca93` |
 
 ## Testing and project status
 
@@ -99,7 +107,7 @@ Ziegfried completed an earlier build of the translation, taking these routes:
 - Archangel
 - Tatsumiya Island
 
-Many thanks to Ziegfried for completing a playthrough and helping test the translation. Other testers have worked on other routes. A full playthrough of an **earlier build** does **not** establish that the latest 0.9.2 changes, all route combinations or optional events are free of issues.
+Many thanks to Ziegfried for completing a playthrough and helping test the translation. Other testers have worked on other routes. The latest builds, alternate routes and optional events still need broader playthrough testing.
 
 ### Validation of the latest changes
 
@@ -110,7 +118,11 @@ Many thanks to Ziegfried for completing a playthrough and helping test the trans
 - **V94:** the story corrections passed decoding checks; visual confirmation of Type, Terr and Hero Unit adjustments is still pending.
 - **V95:** melonDS 1.1 reproduced the Chaser Combo sequence from the tester's battery save. Mist's restored response displayed with the correct portrait, and the attack animation continued. The V95 patch was independently reconstructed using Python and JavaScript.
 
-These are targeted checks, not a complete playthrough of 0.9.2. Please continue to test different routes, support combinations, dynamic names, battle transitions and menu screens.
+- **V96:** the rebuilt patch passed reconstruction checks. Visual checks of the updated bonus menus remain pending.
+- **V97:** both updated graphics were inspected after decoding. Their in-game animations still need visual confirmation.
+- **V99:** the patcher reproduced the expected ROM byte for byte. The reconstructed pose differed from the supplied reference by 7 visible pixels, down from 101 in V98, using a tolerance of two RGB levels. The animation still needs an in-game check.
+
+Full-playthrough coverage applies to the earlier build described above. Please continue to test different routes, support combinations, dynamic names, battle transitions and menu screens.
 
 ## Known limitations and bug reports
 
@@ -122,7 +134,7 @@ These are targeted checks, not a complete playthrough of 0.9.2. Please continue 
 
 If you encounter a crash, clipped text, a broken portrait, missing dialogue or an interface issue, please open an issue in the GitLab project and include, if possible:
 
-- The **patch version (0.9.2 / V95)** and your emulator or hardware.
+- The **patch version (0.9.2F / V99)** and your emulator or hardware.
 - The **chapter, route, unit and action** involved (attack, counterattack, support, defense, etc.).
 - The **last visible dialogue line** or a description of the affected screen.
 - A screenshot or short video; for a crash, a diagnostic dump may also help.
